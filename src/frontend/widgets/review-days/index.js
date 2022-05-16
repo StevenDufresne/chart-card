@@ -2,10 +2,8 @@
  * WordPress dependencies
  */
 
-import { Tooltip } from '@wordpress/components';
 import { Fragment, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Icon, info } from '@wordpress/icons';
 
 /**
  * Internal dependencies

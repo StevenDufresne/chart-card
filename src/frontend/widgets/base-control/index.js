@@ -3,7 +3,7 @@
  */
 import apiFetch from '@wordpress/api-fetch';
 import { Card, CardBody, CardHeader } from '@wordpress/components';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Chart from '../../chart';
 import Notes from './notes';
@@ -18,7 +18,6 @@ export default ( {
 	mapFunction,
 	url,
 } ) => {
-
 	useEffect( () => {
 		apiFetch( {
 			path: url,
@@ -39,7 +38,9 @@ export default ( {
 					data={ chartData }
 					options={ chartOptions }
 				/>
-				<div className="wporg-theme-review-stats__notes">{ chartNotes.length > 0 && <Notes notes={ chartNotes } /> }</div>
+				<div className="wporg-theme-review-stats__notes">
+					{ chartNotes.length > 0 && <Notes notes={ chartNotes } /> }
+				</div>
 			</CardBody>
 		</Card>
 	);

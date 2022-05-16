@@ -12,7 +12,7 @@ const Item = ( { children } ) => <div style={ { flex: 1 } }>{ children }</div>;
 
 function App() {
 	return (
-		<div style={{ maxWidth: '960px', margin: '0 auto'}}>
+		<div style={ { maxWidth: '960px', margin: '0 auto' } }>
 			<h3>Reviews</h3>
 			<Flex>
 				<Item>

@@ -67,8 +67,14 @@ export default () => {
 				},
 			} }
 			chartNotes={ [
-				__('Themes that contain tag full-site-editing are considered FSE themes.', 'wporg'),
-				__('Chart only shows data after 2020 although is calculated using all historical data.','wporg'),
+				__(
+					'Themes that contain tag full-site-editing are considered FSE themes.',
+					'wporg'
+				),
+				__(
+					'Chart only shows data after 2020 although is calculated using all historical data.',
+					'wporg'
+				),
 			] }
 			url={ `themes/v1/review-stats?startDate=2001-01-01` }
 			mapFunction={ mapData }

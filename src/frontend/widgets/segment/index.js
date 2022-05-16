@@ -83,8 +83,14 @@ export default () => {
 				},
 			} }
 			chartNotes={ [
-				__('Groups authors based on how many published themes they have at the time of upload.', 'wporg'),
-				__('Chart only shows data after 2018 although is calculated using all historical data.','wporg'),
+				__(
+					'Groups authors based on how many published themes they have at the time of upload.',
+					'wporg'
+				),
+				__(
+					'Chart only shows data after 2018 although is calculated using all historical data.',
+					'wporg'
+				),
 			] }
 			url={ `themes/v1/review-stats?startDate=2007-01-01` }
 			mapFunction={ mapData }

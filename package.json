@@ -32,6 +32,7 @@
     "@wordpress/scripts": "15.0.1"
   },
   "dependencies": {
+    "@wordpress/icons": "^8.4.0",
     "react-google-charts": "^4.0.0"
   }
 }
