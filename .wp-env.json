@@ -1,0 +1,9 @@
+{
+	"core": "WordPress/WordPress",
+	"plugins": [
+		"."
+	],
+	"mappings": {
+		"wp-cli.yml": "./.wp-env/wp-cli.yml"
+	}
+}
