@@ -21,8 +21,20 @@ namespace WordPressdotorg\Theme_Review_Stats_Block;
  */
 function render_callback( $attributes, $content ) {
 	return sprintf(
-		'<div class="wporg-theme-review-stats" id="%s">Loading Stats ...</div>',
-		'wporg-theme-review-stats-js',
+		'<div class="wporg-theme-review-stats wporg-theme-review-stats-js"
+			data-url="%s" 
+			data-title="%s" 
+			data-headings="%s" 
+			data-notes="%s" 
+			data-type="%s" 
+			data-options="%s"
+		>Loading Stats ...</div>',
+		esc_attr( $attributes['dataURL'] ),
+		esc_attr( $attributes['title'] ),
+		esc_attr( $attributes['headings'] ),
+		esc_attr( $attributes['notes'] ),
+		esc_attr( $attributes['chartType'] ),
+		esc_attr( $attributes['chartOptions'] ),
 	);
 }
 

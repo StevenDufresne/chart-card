@@ -10,12 +10,16 @@ import App from './app';
 import './styles.css';
 
 const init = () => {
-	const container = document.getElementById( 'wporg-theme-review-stats-js' );
-	if ( ! container ) {
+	const containers = document.querySelectorAll( '.wporg-theme-review-stats-js' );
+
+	if ( ! containers.length ) {
 		return;
 	}
 
-	render( createElement( App ), container );
+    // We may have multiple charts on the same page
+    containers.forEach( container => {
+        render( createElement( App, { data: container.dataset }  ), container );
+    })	
 };
 
 document.addEventListener( 'DOMContentLoaded', init ); // eslint-disable-line
