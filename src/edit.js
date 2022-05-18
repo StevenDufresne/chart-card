@@ -43,40 +43,66 @@ const EditView = ( { attributes, setAttributes } ) => {
 	}
 
 	function onOptionsChange( newValue ) {
-        // TODO try JSON parse to validate.
+		// TODO try JSON parse to validate.
 		setAttributes( { chartOptions: newValue } );
 	}
+
+	const chartTypes = [
+		'LineChart',
+		'ColumnChart',
+		'Histogram',
+		'PieChart',
+		'ScatterChart',
+	];
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Data Settings' ) }>
+				<PanelBody title={ __( 'Chart' ) }>
 					<TextControl
-						label={ __( 'URL', 'wporg' ) }
-						help={ __( 'The relative endpoint that returns google charts data.', 'wporg' ) }
-						value={ dataURL }
-						onChange={ onURLChange }
+						label={ __( 'Title', 'wporg' ) }
+						value={ title }
+						onChange={ onTitleChange }
 					/>
-				</PanelBody>
-				<PanelBody title={ __( 'Chart Settings' ) }>
 					<SelectControl
-						label="Google Chart Type"
+						label="Chart Type"
 						onChange={ onTypeChange }
 						value={ chartType }
 						options={ [
-							{
-								label: __( 'Select an option', 'wporg' ),
-								value: '',
-							},
-							{
-								label: 'LineChart',
-								value: 'LineChart',
-							},
-							{
-								label: 'ColumnChart',
-								value: 'ColumnChart',
-							},
+							...[
+								{
+									label: __( 'Select an option', 'wporg' ),
+									value: '',
+								},
+							],
+							...chartTypes.map( ( type ) => {
+								return { label: type, value: type };
+							} ),
 						] }
+					/>
+					<TextareaControl
+						label={ __( 'Options (Optional)', 'wporg' ) }
+						value={ chartOptions }
+						help={ __( 'Valid JSON object', 'wporg' ) }
+						onChange={ onOptionsChange }
+					/>
+					<TextareaControl
+						label="Notes (Optional)"
+						value={ notes }
+						help={ __( 'Comma separated list.', 'wporg' ) }
+						onChange={ onNotesChange }
+						z
+					/>
+				</PanelBody>
+				<PanelBody title={ __( 'Data Settings' ) }>
+					<TextControl
+						label={ __( 'URL', 'wporg' ) }
+						help={ __(
+							'The relative endpoint that returns google charts data.',
+							'wporg'
+						) }
+						value={ dataURL }
+						onChange={ onURLChange }
 					/>
 					<TextareaControl
 						label={ __( 'Headings', 'wporg' ) }
@@ -84,36 +110,18 @@ const EditView = ( { attributes, setAttributes } ) => {
 						value={ headings }
 						onChange={ onHeadingsChange }
 					/>
-
-					<TextareaControl
-						label={ __( 'Options', 'wporg' ) }
-						value={ chartOptions }
-						help={ __( 'Valid JSON object', 'wporg' ) }
-						onChange={ onOptionsChange }
-					/>
-				</PanelBody>
-
-				<PanelBody title={ __( 'Card Settings' ) }>
-					<TextControl
-						label={ __( 'Title', 'wporg' ) }
-						value={ title }
-						onChange={ onTitleChange }
-					/>
-
-					<TextareaControl
-						label="Notes"
-						value={ notes }
-						help={ __( 'Comma separated list.', 'wporg' ) }
-						onChange={ onNotesChange }
-                        z
-					/>
 				</PanelBody>
 			</InspectorControls>
 			<Placeholder
-				icon={chartBar}
-                instructions={ dataURL.length ? dataURL : __( 'Fill in details in the sidebar.', 'wporg' ) }
+				icon={ chartBar }
 				label={ title.length ? title : __( 'Stats Widget', 'wporg' ) }
-			/>
+			>
+				<p>
+					{ dataURL.length
+						? dataURL
+						: __( 'Fill in details in the sidebar.', 'wporg' ) }
+				</p>
+			</Placeholder>
 		</>
 	);
 };

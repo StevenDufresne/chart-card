@@ -1,20 +1,20 @@
-.wporg-theme-review-stats {
+.wporg-chart-block {
 	width: 100%;
 }
 
-.wporg-theme-review-stats__actions label {
+.wporg-chart-block__actions label {
 	margin-right: 0.5rem;
 	font-size: 14px;
 }
 
-.wporg-theme-review-stats__notes {
+.wporg-chart-block__notes {
 	position: relative;
 	font-size: 13px;
 	height: 40px;
 	z-index: 100000;
 }
 
-.wporg-theme-review-stats__notes ul {
+.wporg-chart-block__notes ul {
 	position: absolute;
 	left: 0;
 	margin-top: 0.5rem;
@@ -24,7 +24,7 @@
 	border: 1px solid #888;
 }
 
-.wporg-theme-review-stats__notes__toggle {
+.wporg-chart-block__notes__toggle {
 	font-size: 14px;
 	color: #666;
 }

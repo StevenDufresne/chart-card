@@ -6,11 +6,11 @@ import { createElement, render } from '@wordpress/element';
 /**
  * Internal dependencies
  */
-import App from './app';
+import Block from './block';
 import './styles.css';
 
 const init = () => {
-	const containers = document.querySelectorAll( '.wporg-theme-review-stats-js' );
+	const containers = document.querySelectorAll( '.wporg-chart-block-js' );
 
 	if ( ! containers.length ) {
 		return;
@@ -18,7 +18,7 @@ const init = () => {
 
     // We may have multiple charts on the same page
     containers.forEach( container => {
-        render( createElement( App, { data: container.dataset }  ), container );
+        render( createElement( Block, { data: container.dataset }  ), container );
     })	
 };
 

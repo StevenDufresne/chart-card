@@ -1,16 +1,24 @@
 <?php
 /**
- * Plugin Name: Theme Review Stats
- * Description: Displays stats from theme reviews
- * Plugin URI: https://github.com/WordPress/theme-review-stats-block
+ * Plugin Name: Chart Block 
+ * Description: Hook an endpoint to display data using a chart library.
+ * Plugin URI: https://github.com/WordPress/wporg-chart-block
  * Author: WordPress.org
  * Version: 1.1.0
- * Text Domain: wporg-theme-review-stats-block
+ * Text Domain: wporg-chart-block
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-namespace WordPressdotorg\Theme_Review_Stats_Block;
+namespace WordPressdotorg\Chart_Block;
+
+/**
+ * Turn on the REST endpoint.
+ */
+add_action( 'rest_api_init', function() {
+	require_once  __DIR__ . '/src/inc/class-theme-review-stats.php';
+} );
+
 
 /**
  * Render the block content (html) on the frontend of the site.
@@ -21,7 +29,7 @@ namespace WordPressdotorg\Theme_Review_Stats_Block;
  */
 function render_callback( $attributes, $content ) {
 	return sprintf(
-		'<div class="wporg-theme-review-stats wporg-theme-review-stats-js"
+		'<div class="wporg-chart-block wporg-chart-block-js"
 			data-url="%s" 
 			data-title="%s" 
 			data-headings="%s" 
@@ -29,12 +37,12 @@ function render_callback( $attributes, $content ) {
 			data-type="%s" 
 			data-options="%s"
 		>Loading Stats ...</div>',
-		esc_attr( $attributes['dataURL'] ),
-		esc_attr( $attributes['title'] ),
-		esc_attr( $attributes['headings'] ),
-		esc_attr( $attributes['notes'] ),
-		esc_attr( $attributes['chartType'] ),
-		esc_attr( $attributes['chartOptions'] ),
+		esc_attr( $attributes['dataURL'] ?? '' ),
+		esc_attr( $attributes['title'] ?? '' ),
+		esc_attr( $attributes['headings'] ?? '' ),
+		esc_attr( $attributes['notes'] ?? '' ),
+		esc_attr( $attributes['chartType'] ?? '' ),
+		esc_attr( $attributes['chartOptions'] ?? '' ),
 	);
 }
 
@@ -53,7 +61,7 @@ function register_assets() {
 
 	// Register our block script with WordPress.
 	wp_register_script(
-		'wporg-theme-review-stats-block-script',
+		'wporg-chart-block-block-script',
 		plugins_url( 'build/index.js', __FILE__ ),
 		$block_info['dependencies'],
 		$block_info['version'],
@@ -62,7 +70,7 @@ function register_assets() {
 
 	// Register our block's base CSS.
 	wp_register_style(
-		'wporg-theme-review-stats-block-style',
+		'wporg-chart-block-block-style',
 		plugins_url( 'style.css', __FILE__ ),
 		array(),
 		$block_info['version']
@@ -71,14 +79,14 @@ function register_assets() {
 	// No frontend scripts in the editor
 	if ( ! is_admin() ) {
 		wp_register_script(
-			'wporg-theme-review-stats-script',
+			'wporg-chart-block-script',
 			plugin_dir_url( __FILE__ ) . 'build/frontend.js',
 			$frontend_info['dependencies'],
 			$frontend_info['version'],
 			false
 		);
 		wp_register_style(
-			'wporg-theme-review-stats-style',
+			'wporg-chart-block-style',
 			plugin_dir_url( __FILE__ ) . 'build/frontend.css',
 			array( 'wp-components' ),
 			$frontend_info['version']
@@ -87,12 +95,12 @@ function register_assets() {
 
 	// Enqueue the script in the editor.
 	register_block_type(
-		'wporg-theme-review-stats/main',
+		'wporg-chart-block/main',
 		array(
-			'editor_script'   => 'wporg-theme-review-stats-block-script',
-			'editor_style'    => 'wporg-theme-review-stats-block-style',
-			'script'          => 'wporg-theme-review-stats-script',
-			'style'           => 'wporg-theme-review-stats-style',
+			'editor_script'   => 'wporg-chart-block-block-script',
+			'editor_style'    => 'wporg-chart-block-block-style',
+			'script'          => 'wporg-chart-block-script',
+			'style'           => 'wporg-chart-block-style',
 			'render_callback' => __NAMESPACE__ . '\render_callback',
 		)
 	);
@@ -103,9 +111,9 @@ add_action( 'init', __NAMESPACE__ . '\register_assets' );
  * Conditionally remove the Script/Style assets added through `register_block_type()`.
  */
 function conditionally_load_assets() {
-	if ( ! is_singular() || ! has_block( 'wporg-theme-review-stats/main' ) ) {
-		wp_dequeue_script( 'wporg-theme-review-stats-script' );
-		wp_dequeue_style( 'wporg-theme-review-stats-style' );
+	if ( ! is_singular() || ! has_block('wporg-chart-block/main' ) ) {
+		wp_dequeue_script( 'wporg-chart-block-script' );
+		wp_dequeue_style( 'wporg-chart-block-style' );
 	}
 }
 add_action( 'enqueue_block_assets', __NAMESPACE__ . '\conditionally_load_assets' );

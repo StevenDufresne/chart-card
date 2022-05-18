@@ -39,6 +39,6 @@ const Block = ( { data } ) => {
 
 export default ( props ) => (
 	<AppContext>
-		<Widget {...props} />
+		<Block {...props} />
 	</AppContext>
 );

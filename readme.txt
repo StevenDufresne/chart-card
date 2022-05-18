@@ -1,26 +1,24 @@
-=== Theme Review Stats ===
+=== Chart Block ===
 Contributors: WordPress.org
 Author URI: https://wordpress.org/
-Tags: stats
+Tags: stats, charts, block
 Requires at least: 4.5
 Tested up to: 5.2.1
 Stable tag: 0.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Theme Review Stats as used on Make.WordPress.org
+Chart Block as used on WordPress.org.
 
 == Description ==
 
-This provides a way of scheduling recurring meetings, and displaying a calendar or timetable.
+Hook an endpoint to display data using a chart library.
 
 == Installation ==
 
-1.  Activate the `Theme Review Stats` plugin in your WordPress plugin directory
-2.  Create some meetings
-3.  While editing your page/post, add in the `Theme Review Stats` block and publish!
-
-== Frequently Asked Questions ==
+1.  Activate the `Chart Block` plugin in your WordPress plugin directory
+2.  Create an api endpoint that returns Google Charts formatted data
+3.  While editing your page/post, add in the `Chart Block` block, update the attributes and publish!
 
 == Screenshots ==
 

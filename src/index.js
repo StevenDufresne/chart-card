@@ -3,15 +3,16 @@
  */
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import { chartBar } from '@wordpress/icons';
 
 /**
  * Internal dependencies
  */
 import edit from './edit';
 
-registerBlockType( 'wporg-theme-review-stats/main', {
-	title: __( 'Theme Review Stats', 'wporg' ),
-	icon: 'info',
+registerBlockType( 'wporg-chart-block/main', {
+	title: __( 'Chart Block', 'wporg' ),
+	icon: chartBar,
 	category: 'widgets',
 	attributes: {
 		dataURL: {

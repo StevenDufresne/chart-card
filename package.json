@@ -1,7 +1,7 @@
 {
-  "name": "theme-review-stats-block",
+  "name": "chart-block",
   "version": "1.0.0",
-  "description": "A block that displays theme review stats for WordPress.org",
+  "description": " Hook an endpoint to display data using a chart library.",
   "main": "index.js",
   "scripts": {
     "build": "wp-scripts build index=./src/index.js frontend=./src/frontend/index.js",
