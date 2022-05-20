@@ -7,6 +7,16 @@ export default ( { headings, data, type = 'LineChart', options } ) => {
 	const defaultOptions = {
 		chartArea: { left: 50, top: 30, width: '95%', height: '200' },
 		legend: { position: 'bottom' },
+        hAxis: {
+            textStyle: {
+                fontSize: 12
+            }
+        },
+        vAxis: {
+            textStyle: {
+                fontSize: 12
+            }
+        },
 	};
 
 	return (
