@@ -29,7 +29,8 @@
     "@wordpress/element": "^4.6.0",
     "@wordpress/env": "4.0.3",
     "@wordpress/i18n": "^4.8.0",
-    "@wordpress/scripts": "15.0.1"
+    "@wordpress/scripts": "15.0.1",
+    "@wordpress/url": "^3.10.0"
   },
   "dependencies": {
     "@wordpress/icons": "^8.4.0",

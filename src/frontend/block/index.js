@@ -4,6 +4,7 @@
 
 import { Fragment, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { addQueryArgs, removeQueryArgs } from '@wordpress/url';
 
 /**
  * Internal dependencies
@@ -16,6 +17,10 @@ const Block = ( { data } ) => {
 	const [ chartData, setChartData ] = useState( [] );
 	const { startDate } = useAppContext();
 	const { title, url, headings, notes, type, options } = data;
+
+	const fullUrl = addQueryArgs( removeQueryArgs( url, 'startDate' ), {
+		startDate,
+	} );
 
 	return (
 		<BaseControl
@@ -31,7 +36,7 @@ const Block = ( { data } ) => {
 			chartHeadings={ headings.split( ',' ) }
 			chartOptions={ options.trim().length ? JSON.parse( options ) : {} }
 			chartNotes={ notes.trim().length ? notes.split( ',' ) : [] }
-			url={ `${ url }?startDate=${ startDate }` }
+			url={ fullUrl }
 			mapFunction={ setChartData }
 		/>
 	);
