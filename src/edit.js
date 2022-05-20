@@ -60,7 +60,7 @@ const EditView = ( { attributes, setAttributes } ) => {
 			<InspectorControls>
 				<PanelBody title={ __( 'Chart' ) }>
 					<TextControl
-						label={ __( 'Title', 'wporg' ) }
+						label={ __( 'Title', 'wporg-block' ) }
 						value={ title }
 						onChange={ onTitleChange }
 					/>
@@ -71,7 +71,7 @@ const EditView = ( { attributes, setAttributes } ) => {
 						options={ [
 							...[
 								{
-									label: __( 'Select an option', 'wporg' ),
+									label: __( 'Select an option', 'wporg-block' ),
 									value: '',
 								},
 							],
@@ -81,22 +81,22 @@ const EditView = ( { attributes, setAttributes } ) => {
 						] }
 					/>
 					<TextareaControl
-						label={ __( 'Options (Optional)', 'wporg' ) }
+						label={ __( 'Options (Optional)', 'wporg-block' ) }
 						value={ chartOptions }
-						help={ __( 'Valid JSON object', 'wporg' ) }
+						help={ __( 'Valid JSON object', 'wporg-block' ) }
 						onChange={ onOptionsChange }
 					/>
 					<TextareaControl
 						label="Notes (Optional)"
 						value={ notes }
-						help={ __( 'Comma separated list.', 'wporg' ) }
+						help={ __( 'Comma separated list.', 'wporg-block' ) }
 						onChange={ onNotesChange }
 						z
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'Data Settings' ) }>
 					<TextControl
-						label={ __( 'URL', 'wporg' ) }
+						label={ __( 'URL', 'wporg-block' ) }
 						help={ __(
 							'The relative endpoint that returns google charts data.',
 							'wporg'
@@ -105,8 +105,8 @@ const EditView = ( { attributes, setAttributes } ) => {
 						onChange={ onURLChange }
 					/>
 					<TextareaControl
-						label={ __( 'Headings', 'wporg' ) }
-						help={ __( 'Comma separated list', 'wporg' ) }
+						label={ __( 'Headings', 'wporg-block' ) }
+						help={ __( 'Comma separated list', 'wporg-block' ) }
 						value={ headings }
 						onChange={ onHeadingsChange }
 					/>
@@ -114,12 +114,12 @@ const EditView = ( { attributes, setAttributes } ) => {
 			</InspectorControls>
 			<Placeholder
 				icon={ chartBar }
-				label={ title.length ? title : __( 'Stats Widget', 'wporg' ) }
+				label={ title.length ? title : __( 'Stats Widget', 'wporg-block' ) }
 			>
 				<p>
 					{ dataURL.length
 						? dataURL
-						: __( 'Fill in details in the sidebar.', 'wporg' ) }
+						: __( 'Fill in details in the sidebar.', 'wporg-block' ) }
 				</p>
 			</Placeholder>
 		</>

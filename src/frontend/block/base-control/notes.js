@@ -16,7 +16,7 @@ export default ( { notes } ) => {
 						className="wporg-chart-block__notes__toggle"
 						onClick={ () => setShowNotes( ! showNotes ) }
 					>
-						{ __( 'See notes', 'wporg' ) } ({ notes.length })
+						{ __( 'See notes', 'wporg-block' ) } ({ notes.length })
 					</Button>
 					{ showNotes && (
 						<ul>

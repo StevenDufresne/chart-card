@@ -56,7 +56,7 @@ export default ( {
 		}
 
 		if ( ! chartData.length ) {
-			return <p>{ __( 'No Data', 'wporg' ) }</p>;
+			return <p>{ __( 'No Data', 'wporg-block' ) }</p>;
 		}
 
 		return (

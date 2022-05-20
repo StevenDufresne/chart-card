@@ -11,7 +11,7 @@ import { chartBar } from '@wordpress/icons';
 import edit from './edit';
 
 registerBlockType( 'wporg-chart-block/main', {
-	title: __( 'Chart Block', 'wporg' ),
+	title: __( 'Chart Block', 'wporg-block' ),
 	icon: chartBar,
 	category: 'widgets',
 	attributes: {

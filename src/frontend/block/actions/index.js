@@ -12,7 +12,7 @@ export default () => {
 	const { startDate, setStartDate } = useAppContext();
 	return (
 		<div className="wporg-chart-block__actions">
-			<label htmlFor="startDate">{ __( 'From:', 'wporg' ) }</label>
+			<label htmlFor="startDate">{ __( 'From:', 'wporg-block' ) }</label>
 			<input
 				type="date"
 				id="startDate"

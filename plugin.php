@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Chart Block
  * Description: Hook an endpoint to display data using a chart library.
- * Plugin URI: https://github.com/WordPress/wporg-chart-block
+ * Plugin URI: https://github.com/WordPress/chart-block
  * Author: WordPress.org
  * Version: 1.1.0
- * Text Domain: wporg-chart-block
+ * Text Domain: wporg-block
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -96,6 +96,8 @@ function register_assets() {
 			'render_callback' => __NAMESPACE__ . '\render_callback',
 		)
 	);
+
+	wp_set_script_translations( 'wporg-chart-block-script', 'wporg-block' );
 }
 add_action( 'init', __NAMESPACE__ . '\register_assets' );
 

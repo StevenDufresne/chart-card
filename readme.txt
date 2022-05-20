@@ -1,5 +1,5 @@
 === Chart Block ===
-Contributors: WordPress.org
+Contributors: wordpressdotorg
 Author URI: https://wordpress.org/
 Tags: stats, charts, block
 Requires at least: 4.5
