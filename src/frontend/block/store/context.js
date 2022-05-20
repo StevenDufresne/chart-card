@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { createContext, useContext, useState } from '@wordpress/element';
+import { getQueryArg } from "@wordpress/url";
 
 const StateContext = createContext();
 
@@ -9,12 +10,17 @@ const getDate = ( dateObj, subtract = 0 ) => {
 	const month = dateObj.getUTCMonth() + 1;
 	const paddedMonth = month < 10 ? `0${ month }` : month;
 	const year = dateObj.getUTCFullYear() - subtract;
+    const day = dateObj.getUTCDate();
+    const paddedDay = day < 10 ? `0${ day }` : day;
 
-	return year + '-' + paddedMonth;
+	return `${year}-${paddedMonth}-${paddedDay}`;
 };
 
-export function AppContext( { children } ) {
-	const initDate = getDate( new Date(), 2 ); // Start 2 years back
+export function AppContext( { data, children } ) {
+    const qStartDate = getQueryArg(data.url, 'startDate');
+
+    // If a startDate was added to the url, use that.
+    let initDate = qStartDate ? qStartDate : getDate( new Date(), 2 );
 	const [ startDate, setStartDate ] = useState( initDate );
 
 	return (

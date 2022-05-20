@@ -26,19 +26,19 @@ const Block = ( { data } ) => {
 					<Actions />
 				</Fragment>
 			}
-            chartType={type}
+			chartType={ type }
 			chartData={ chartData }
-			chartHeadings={ headings.split(',') }
-			chartOptions={options.trim().length ? JSON.parse(options) : {} }
-			chartNotes={ notes.trim().length ? notes.split(',') : []  }
-			url={ `${url}?startDate=${startDate}` }
+			chartHeadings={ headings.split( ',' ) }
+			chartOptions={ options.trim().length ? JSON.parse( options ) : {} }
+			chartNotes={ notes.trim().length ? notes.split( ',' ) : [] }
+			url={ `${ url }?startDate=${ startDate }` }
 			mapFunction={ setChartData }
 		/>
 	);
 };
 
 export default ( props ) => (
-	<AppContext>
-		<Block {...props} />
+	<AppContext { ...props }>
+		<Block { ...props } />
 	</AppContext>
 );

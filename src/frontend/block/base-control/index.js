@@ -2,13 +2,19 @@
  * WordPress dependencies
  */
 import apiFetch from '@wordpress/api-fetch';
-import { Card, CardBody, CardHeader } from '@wordpress/components';
-import { useEffect, useState } from '@wordpress/element';
+import {
+	Card,
+	CardBody,
+	CardHeader,
+	Flex,
+	Spinner,
+} from '@wordpress/components';
+import { Fragment, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Chart from '../../chart';
 import Notes from './notes';
 
-export default ({
+export default ( {
 	cardTitle,
 	chartData = [],
 	chartOptions,
@@ -17,45 +23,59 @@ export default ({
 	chartNotes = [],
 	mapFunction,
 	url,
-}) => {
-	const [error, setError] = useState();
-	const [fetchingData, setFetchingData] = useState();
+} ) => {
+	const [ error, setError ] = useState();
+	const [ fetchingData, setFetchingData ] = useState();
 
-	useEffect(() => {
-		//setFetchingData(true);
-		apiFetch({
+	useEffect( () => {
+		setFetchingData( true );
+		apiFetch( {
 			path: url,
-		})
-			.then(mapFunction)
-			.catch(setError);
-	}, [url]);
+		} )
+			.then( ( data ) => {
+				setFetchingData( false );
+				mapFunction( data );
+			} )
+			.catch( () => {
+				setFetchingData( false );
+				setError();
+			} );
+	}, [ url ] );
 
-	if (error) {
-		return <p>{error.message}</p>;
-	}
+	const getContent = () => {
+		if ( error ) {
+			return <p>{ error.message }</p>;
+		}
 
-	if (fetchingData) {
-		return <p>{__('Loading ...', 'wporg')}</p>;
-	}
+		if ( fetchingData ) {
+			return (
+				<Flex align="center" justify="center">
+					<Spinner />
+				</Flex>
+			);
+		}
 
-	if (!chartData.length) {
-		return <p>{__('No Data', 'wporg')}</p>;
-	}
+		if ( ! chartData.length ) {
+			return <p>{ __( 'No Data', 'wporg' ) }</p>;
+		}
+
+		return (
+			<Fragment>
+				<Chart
+					type={ chartType }
+					headings={ chartHeadings }
+					data={ chartData }
+					options={ chartOptions }
+				/>
+				<Notes notes={ chartNotes } />
+			</Fragment>
+		);
+	};
 
 	return (
-		<Card>
-			<CardHeader>{cardTitle}</CardHeader>
-			<CardBody>
-				<Chart
-					type={chartType}
-					headings={chartHeadings}
-					data={chartData}
-					options={chartOptions}
-				/>
-				<div className="wporg-theme-review-stats__notes">
-					{chartNotes.length > 0 && <Notes notes={chartNotes} />}
-				</div>
-			</CardBody>
+		<Card className="wporg-chart-block__card">
+			<CardHeader>{ cardTitle }</CardHeader>
+			<CardBody>{ getContent() }</CardBody>
 		</Card>
 	);
 };
