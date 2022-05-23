@@ -18,7 +18,8 @@
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js",
     "test:unit-php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/theme-review-stats-block/phpunit.xml.dist --verbose'",
-    "wp-env": "wp-env"
+    "wp-env": "wp-env",
+    "package:mac": "zip -r wporg-chart-block.zip ./ -x '.git/*' -x '*.json' -x 'yarn.lock' -x '*node_modules*' -x '*/src/*'"
   },
   "author": "",
   "license": "GPL-2.0-or-later",

@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Chart Block
+ * Plugin Name: Chart Card
  * Description: Hook an endpoint to display data using a chart library.
- * Plugin URI: https://github.com/WordPress/chart-block
- * Author: WordPress.org
- * Version: 1.1.0
+ * Plugin URI: https://github.com/StevenDufresne/chart-card
+ * Author: dufresnesteven
+ * Version: 1.0.0
  * Text Domain: wporg-block
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
@@ -53,20 +53,15 @@ function register_assets() {
 
 	// Register our block script with WordPress.
 	wp_register_script(
-		'wporg-chart-block-block-script',
+		'wporg-chart-block-editor-script',
 		plugins_url( 'build/index.js', __FILE__ ),
 		$block_info['dependencies'],
 		$block_info['version'],
 		false
 	);
 
-	// Register our block's base CSS .
-	wp_register_style(
-		'wporg-chart-block-block-style',
-		plugins_url( 'style.css', __FILE__ ),
-		array(),
-		$block_info['version']
-	);
+	// Add translation support.
+	wp_set_script_translations( 'wporg-chart-block-editor-script', 'wporg-chart-block' );
 
 	// No frontend scripts in the editor
 	if ( ! is_admin() ) {
@@ -77,6 +72,7 @@ function register_assets() {
 			$frontend_info['version'],
 			false
 		);
+
 		wp_register_style(
 			'wporg-chart-block-style',
 			plugin_dir_url( __FILE__ ) . 'build/frontend.css',
@@ -87,17 +83,12 @@ function register_assets() {
 
 	// Enqueue the script in the editor.
 	register_block_type(
-		'wporg-chart-block/main',
+		__DIR__ . '/block.json',
 		array(
-			'editor_script'   => 'wporg-chart-block-block-script',
-			'editor_style'    => 'wporg-chart-block-block-style',
-			'script'          => 'wporg-chart-block-script',
-			'style'           => 'wporg-chart-block-style',
 			'render_callback' => __NAMESPACE__ . '\render_callback',
 		)
 	);
 
-	wp_set_script_translations( 'wporg-chart-block-script', 'wporg-block' );
 }
 add_action( 'init', __NAMESPACE__ . '\register_assets' );
 

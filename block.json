@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "wporg-chart-block/main",
+	"title": "Chart Block",
+	"category": "widgets",
+	"icon": "chartBar",
+	"description": "Hook an endpoint to display data using a chart library.",
+	"attributes": {
+		"dataURL": {
+			"type": "string"
+		},
+		"title": {
+			"type": "string"
+		},
+		"notes": {
+			"type": "string"
+		},
+		"headings": {
+			"type": "string"
+		},
+		"chartType": {
+			"type": "string"
+		},
+		"chartOptions": {
+			"type": "string"
+		}
+	},
+	"textdomain": "wporg-block",
+	"editorScript": "wporg-chart-block-editor-script",
+	"script": "wporg-chart-block-script",
+	"style": "wporg-chart-block-style"
+}
