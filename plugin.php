@@ -28,6 +28,7 @@ function render_callback( $attributes, $content ) {
 			data-notes="%s" 
 			data-type="%s" 
 			data-options="%s"
+			data-is-private="%s"
 		></div>',
 		esc_attr( $attributes['dataURL'] ?? '' ),
 		esc_attr( $attributes['title'] ?? '' ),
@@ -35,6 +36,7 @@ function render_callback( $attributes, $content ) {
 		esc_attr( $attributes['notes'] ?? '' ),
 		esc_attr( $attributes['chartType'] ?? '' ),
 		esc_attr( $attributes['chartOptions'] ?? '' ),
+		$attributes['isPrivate'] ? esc_attr( $attributes['isPrivate'] ? 'true' : 'false' ) : 'false',
 	);
 }
 

@@ -19,6 +19,10 @@
 		"headings": {
 			"type": "string"
 		},
+		"isPrivate": {
+			"type": "boolean",
+			"default": false
+		},
 		"chartType": {
 			"type": "string"
 		},

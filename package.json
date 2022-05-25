@@ -19,7 +19,8 @@
     "test:unit": "wp-scripts test-unit-js",
     "test:unit-php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/theme-review-stats-block/phpunit.xml.dist --verbose'",
     "wp-env": "wp-env",
-    "package:mac": "zip -r wporg-chart-block.zip ./ -x '*wp-env/*' -x '.gitignore'  -x '.git/*' -x '*.wp-env.json' -x 'package.json' -x 'package-lock.json' -x 'yarn.lock' -x '*node_modules*' -x '*/src/*'"
+    "package:mac": "zip -r wporg-chart-block.zip ./ -x '*wp-env/*' -x '.gitignore'  -x '.git/*' -x '*.wp-env.json' -x 'package.json' -x 'package-lock.json' -x 'yarn.lock' -x '*node_modules*' -x '*/src/*'",
+    "ship:mac": "rsync -av --exclude-from='exclude-list.txt' ./ ../../org-plugins/chart-card/trunk && rsync -av --exclude .DS_Store ./assets/* ../../org-plugins/chart-card/assets/"
   },
   "author": "",
   "license": "GPL-2.0-or-later",

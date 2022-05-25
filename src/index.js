@@ -10,8 +10,8 @@ import { chartBar } from '@wordpress/icons';
  */
 import edit from './edit';
 
-registerBlockType( 'wporg-chart-block/main', {
-	title: __( 'Chart Block', 'wporg-block' ),
+registerBlockType('wporg-chart-block/main', {
+	title: __('Chart Block', 'wporg-block'),
 	icon: chartBar,
 	category: 'widgets',
 	attributes: {
@@ -31,6 +31,10 @@ registerBlockType( 'wporg-chart-block/main', {
 			type: 'string',
 			default: '',
 		},
+		isPrivate: {
+			type: 'boolean',
+			default: false,
+		},
 		chartType: {
 			type: 'string',
 			default: '',
@@ -41,4 +45,4 @@ registerBlockType( 'wporg-chart-block/main', {
 	},
 	edit,
 	save: () => null,
-} );
+});

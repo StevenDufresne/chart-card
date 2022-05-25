@@ -6,13 +6,14 @@ import {
 	TextControl,
 	TextareaControl,
 	PanelBody,
+	CheckboxControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Placeholder } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { chartBar } from '@wordpress/icons';
 
-const EditView = ( { attributes, setAttributes } ) => {
+const EditView = ({ attributes, setAttributes }) => {
 	const {
 		headings,
 		dataURL,
@@ -20,31 +21,36 @@ const EditView = ( { attributes, setAttributes } ) => {
 		title,
 		chartType,
 		chartOptions,
+		isPrivate,
 	} = attributes;
 
-	function onURLChange( newValue ) {
-		setAttributes( { dataURL: newValue } );
+	function onURLChange(newValue) {
+		setAttributes({ dataURL: newValue });
 	}
 
-	function onNotesChange( newValue ) {
-		setAttributes( { notes: newValue } );
+	function onNotesChange(newValue) {
+		setAttributes({ notes: newValue });
 	}
 
-	function onTitleChange( newValue ) {
-		setAttributes( { title: newValue } );
+	function onTitleChange(newValue) {
+		setAttributes({ title: newValue });
 	}
 
-	function onHeadingsChange( newValue ) {
-		setAttributes( { headings: newValue } );
+	function onHeadingsChange(newValue) {
+		setAttributes({ headings: newValue });
 	}
 
-	function onTypeChange( newValue ) {
-		setAttributes( { chartType: newValue } );
+	function onTypeChange(newValue) {
+		setAttributes({ chartType: newValue });
 	}
 
-	function onOptionsChange( newValue ) {
+	function onOptionsChange(newValue) {
 		// TODO try JSON parse to validate.
-		setAttributes( { chartOptions: newValue } );
+		setAttributes({ chartOptions: newValue });
+	}
+
+	function onPrivateChange(newValue) {
+		setAttributes({ isPrivate: newValue });
 	}
 
 	const chartTypes = [
@@ -58,68 +64,75 @@ const EditView = ( { attributes, setAttributes } ) => {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Chart' ) }>
+				<PanelBody title={__('Chart')}>
 					<TextControl
-						label={ __( 'Title', 'wporg-block' ) }
-						value={ title }
-						onChange={ onTitleChange }
+						label={__('Title', 'wporg-block')}
+						value={title}
+						onChange={onTitleChange}
 					/>
 					<SelectControl
 						label="Chart Type"
-						onChange={ onTypeChange }
-						value={ chartType }
-						options={ [
+						onChange={onTypeChange}
+						value={chartType}
+						options={[
 							...[
 								{
-									label: __( 'Select an option', 'wporg-block' ),
+									label: __(
+										'Select an option',
+										'wporg-block'
+									),
 									value: '',
 								},
 							],
-							...chartTypes.map( ( type ) => {
+							...chartTypes.map((type) => {
 								return { label: type, value: type };
-							} ),
-						] }
+							}),
+						]}
+					/>
+					<CheckboxControl
+						label="This chart is private"
+						checked={isPrivate}
+						onChange={onPrivateChange}
 					/>
 					<TextareaControl
-						label={ __( 'Options (Optional)', 'wporg-block' ) }
-						value={ chartOptions }
-						help={ __( 'Valid JSON object', 'wporg-block' ) }
-						onChange={ onOptionsChange }
+						label={__('Options (Optional)', 'wporg-block')}
+						value={chartOptions}
+						help={__('Valid JSON object', 'wporg-block')}
+						onChange={onOptionsChange}
 					/>
 					<TextareaControl
 						label="Notes (Optional)"
-						value={ notes }
-						help={ __( 'Comma separated list.', 'wporg-block' ) }
-						onChange={ onNotesChange }
-						z
+						value={notes}
+						help={__('Comma separated list.', 'wporg-block')}
+						onChange={onNotesChange}
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Data Settings' ) }>
+				<PanelBody title={__('Data Settings')}>
 					<TextControl
-						label={ __( 'URL', 'wporg-block' ) }
-						help={ __(
+						label={__('URL', 'wporg-block')}
+						help={__(
 							'The relative endpoint that returns google charts data.',
 							'wporg'
-						) }
-						value={ dataURL }
-						onChange={ onURLChange }
+						)}
+						value={dataURL}
+						onChange={onURLChange}
 					/>
 					<TextareaControl
-						label={ __( 'Headings', 'wporg-block' ) }
-						help={ __( 'Comma separated list', 'wporg-block' ) }
-						value={ headings }
-						onChange={ onHeadingsChange }
+						label={__('Headings', 'wporg-block')}
+						help={__('Comma separated list', 'wporg-block')}
+						value={headings}
+						onChange={onHeadingsChange}
 					/>
 				</PanelBody>
 			</InspectorControls>
 			<Placeholder
-				icon={ chartBar }
-				label={ title.length ? title : __( 'Stats Widget', 'wporg-block' ) }
+				icon={chartBar}
+				label={title.length ? title : __('Stats Widget', 'wporg-block')}
 			>
 				<p>
-					{ dataURL.length
+					{dataURL.length
 						? dataURL
-						: __( 'Fill in details in the sidebar.', 'wporg-block' ) }
+						: __('Fill in details in the sidebar.', 'wporg-block')}
 				</p>
 			</Placeholder>
 		</>
